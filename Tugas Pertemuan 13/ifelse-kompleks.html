@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Hasil Penilaian Mahasiswa</h2>
+<p id="hasil"></p>
+
+<script>
+let nilai = 85;
+let kehadiran = 90;
+let grade = "";
+
+if (nilai >= 85 && kehadiran >= 80) {
+    grade = "A";
+} else if (nilai >= 75 && kehadiran >= 80) {
+    grade = "B";
+} else if (nilai >= 65 && kehadiran >= 75) {
+    grade = "C";
+} else if (nilai >= 50 && kehadiran >= 70) {
+    grade = "D";
+} else {
+    grade = "E";
+}
+
+document.getElementById("hasil").innerHTML =
+"Nilai: " + nilai + "<br>Kehadiran: " + kehadiran +
+"<br>Grade: " + grade;
+</script>
+
+</body>
+</html>

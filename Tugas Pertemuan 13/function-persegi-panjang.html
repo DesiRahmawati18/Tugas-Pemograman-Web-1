@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Persegi Panjang</title>
+</head>
+<body>
+
+    <h2>Menghitung Luas dan Keliling Persegi Panjang</h2>
+
+    <p id="luas"></p>
+    <p id="keliling"></p>
+
+    <script>
+        function hitungPersegiPanjang(panjang, lebar) {
+
+            let luas = panjang * lebar;
+            let keliling = 2 * (panjang + lebar);
+
+            return {
+                luas: luas,
+                keliling: keliling
+            };
+        }
+
+        let hasil = hitungPersegiPanjang(10, 5);
+
+        document.getElementById("luas").innerHTML =
+            "Luas = " + hasil.luas;
+
+        document.getElementById("keliling").innerHTML =
+            "Keliling = " + hasil.keliling;
+    </script>
+
+</body>
+</html>

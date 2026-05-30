@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Gaji Karyawan</title>
+</head>
+<body>
+
+    <h2>Perhitungan Gaji Karyawan</h2>
+
+    <p id="hasil"></p>
+
+    <script>
+        function hitungGaji(gajiPokok, jamLembur) {
+            let upahLembur = jamLembur * 25000;
+            let totalGaji = gajiPokok + upahLembur;
+
+            return totalGaji;
+        }
+
+        let gaji = hitungGaji(4000000, 10);
+
+        document.getElementById("hasil").innerHTML =
+            "Total Gaji Karyawan = Rp " + gaji.toLocaleString("id-ID");
+    </script>
+
+</body>
+</html>
