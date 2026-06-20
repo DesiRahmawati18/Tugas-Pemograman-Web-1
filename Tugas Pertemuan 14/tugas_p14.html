@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mahasiswa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #ffffff;
+            color: #333;
+        }
+        h2 {
+            color: #1a2536;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .form-group label {
+            width: 100px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 250px;
+            padding: 6px;
+            border: 1px solid #7a7a7a;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        .btn-container {
+            margin-left: 100px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        button {
+            padding: 6px 12px;
+            border: 1px solid #7a7a7a;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-right: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #e0e0e0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        table, th, td {
+            border: 1px solid #7a7a7a;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #ffffff;
+            color: #000;
+        }
+        .action-btn {
+            padding: 3px 8px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Data Mahasiswa</h2>
+    
+    <div class="form-group">
+        <label for="nim">NIM:</label>
+        <input type="text" id="nim">
+    </div>
+    <div class="form-group">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama">
+    </div>
+    <div class="form-group">
+        <label for="jurusan">Jurusan:</label>
+        <select id="jurusan">
+            <option value="">Pilih Jurusan</option>
+            <option value="Teknik Informatika">Teknik Informatika</option>
+            <option value="Teknik Elektro">Teknik Elektro</option>
+            <option value="Sistem Informasi">Sistem Informasi</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="fakultas">Fakultas:</label>
+        <select id="fakultas">
+            <option value="">Pilih Fakultas</option>
+            <option value="Ilmu Komputer">Ilmu Komputer</option>
+            <option value="Teknik">Teknik</option>
+        </select>
+    </div>
+
+    <div class="btn-container">
+        <button onclick="tambahMahasiswa()">Tambah Mahasiswa</button>
+        <button onclick="updateMahasiswa()">Update Data Mahasiswa</button>
+    </div>
+
+    <hr>
+
+    <h2>Daftar Mahasiswa</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>Jurusan</th>
+                <th>Fakultas</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="tabel-mahasiswa">
+            </tbody>
+    </table>
+
+    <script>
+        // Array penampung data (mengambil dari LocalStorage jika ada)
+        let dataMahasiswa = JSON.parse(localStorage.getItem('mahasiswa')) || [
+            { nim: "123", nama: "JOHN DOE", jurusan: "Teknik Informatika", fakultas: "Ilmu Komputer" },
+            { nim: "124", nama: "NAME", jurusan: "Teknik Elektro", fakultas: "Teknik" }
+        ];
+
+        let editIndex = null; 
+
+        // Fungsi Menampilkan Data ke Tabel
+        function tampilkanData() {
+            const tbody = document.getElementById('tabel-mahasiswa');
+            tbody.innerHTML = '';
+
+            dataMahasiswa.forEach((mhs, index) => {
+                const row = `<tr>
+                    <td>${mhs.nim}</td>
+                    <td>${mhs.nama}</td>
+                    <td>${mhs.jurusan}</td>
+                    <td>${mhs.fakultas}</td>
+                    <td>
+                        <button class="action-btn" onclick="editData(${index})">Edit</button>
+                        <button class="action-btn" onclick="hapusData(${index})">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+
+            // Simpan ke local storage agar tersimpan di browser
+            localStorage.setItem('mahasiswa', JSON.stringify(dataMahasiswa));
+        }
+
+        // Fungsi Tambah Data
+        function tambahMahasiswa() {
+            const nim = document.getElementById('nim').value;
+            const nama = document.getElementById('nama').value;
+            const jurusan = document.getElementById('jurusan').value;
+            const fakultas = document.getElementById('fakultas').value;
+
+            if (nim === '' || nama === '' || jurusan === '' || fakultas === '') {
+                alert('Mohon isi semua form terlebih dahulu!');
+                return;
+            }
+
+            // Validasi cek apakah NIM sudah ada
+            const nimEksis = dataMahasiswa.some(mhs => mhs.nim === nim);
+            if (nimEksis) {
+                alert('NIM sudah terdaftar!');
+                return;
+            }
+
+            dataMahasiswa.push({ nim, nama, jurusan, fakultas });
+            clearForm();
+            tampilkanData();
+        }
+
+        // Fungsi Edit Data (Mengisi kembali ke form)
+        function editData(index) {
+            editIndex = index;
+            document.getElementById('nim').value = dataMahasiswa[index].nim;
+            document.getElementById('nama').value = dataMahasiswa[index].nama;
+            document.getElementById('jurusan').value = dataMahasiswa[index].jurusan;
+            document.getElementById('fakultas').value = dataMahasiswa[index].fakultas;
+            
+            // Mengunci input NIM saat proses edit
+            document.getElementById('nim').disabled = true; 
+        }
+
+        // Fungsi Update Data
+        function updateMahasiswa() {
+            if (editIndex === null) {
+                alert('Pilih data dari tabel terlebih dahulu dengan mengklik tombol "Edit"!');
+                return;
+            }
+
+            dataMahasiswa[editIndex].nama = document.getElementById('nama').value;
+            dataMahasiswa[editIndex].jurusan = document.getElementById('jurusan').value;
+            dataMahasiswa[editIndex].fakultas = document.getElementById('fakultas').value;
+
+            document.getElementById('nim').disabled = false; 
+            editIndex = null;
+            clearForm();
+            tampilkanData();
+        }
+
+        // Fungsi Hapus Data
+        function hapusData(index) {
+            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+                dataMahasiswa.splice(index, 1);
+                tampilkanData();
+            }
+        }
+
+        // Fungsi Reset Form Input
+        function clearForm() {
+            document.getElementById('nim').value = '';
+            document.getElementById('nama').value = '';
+            document.getElementById('jurusan').value = '';
+            document.getElementById('fakultas').value = '';
+        }
+
+        // Tampilkan data bawaan saat pertama kali dibuka
+        tampilkanData();
+    </script>
+</body>
+</html>

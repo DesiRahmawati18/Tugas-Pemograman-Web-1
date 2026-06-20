@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Object</title>
+  </head>
+  <body>
+    <h1>Belajar JavaScript Object</h1>
+    <p>Buka Inspect > Console untuk melihat hasil.</p>
+
+    <script>
+      console.log("========================================");
+      console.log("          OBJECT MAHASISWA");
+      console.log("========================================");
+
+      // object mahasiswa
+      let mahasiswa = {
+        nim: "231011450252",
+        nama: "Desi Rahmawati",
+        jurusan: "Teknik Informatika",
+        fakultas: "Ilmu Komputer",
+      };
+
+      console.log(mahasiswa);
+
+      console.log(" ");
+      console.log("========================================");
+      console.log("         ARRAY OF OBJECT");
+      console.log("========================================");
+
+      // array of object
+      let dataMahasiswa = [
+        {
+          nim: "231011450252",
+          nama: "Desi Rahmawati",
+          jurusan: "Teknik Informatika",
+          fakultas: "Ilmu Komputer",
+        },
+        {
+          nim: "231011450123",
+          nama: "Ahmad Fauzan",
+          jurusan: "Sistem Informasi",
+          fakultas: "Ilmu Komputer",
+        },
+        {
+          nim: "231011450124",
+          nama: "Siti Aisyah",
+          jurusan: "Teknik Informatika",
+          fakultas: "Ilmu Komputer",
+        },
+        {
+          nim: "231011450125",
+          nama: "Budi Santoso",
+          jurusan: "Sistem Informasi",
+          fakultas: "Ilmu Komputer",
+        },
+        {
+          nim: "231011450126",
+          nama: "Rina Oktaviani",
+          jurusan: "Teknik Informatika",
+          fakultas: "Ilmu Komputer",
+        },
+      ];
+
+      console.log(dataMahasiswa);
+
+      console.log(" ");
+      console.log("========================================");
+      console.log("      ACCESS OBJECT PROPERTY");
+      console.log("========================================");
+
+      console.log("NIM      : ", mahasiswa.nim);
+      console.log("Nama     : ", mahasiswa.nama);
+      console.log("Jurusan  : ", mahasiswa.jurusan);
+      console.log("Fakultas : ", mahasiswa.fakultas);
+
+      console.log(" ");
+      console.log("========================================");
+      console.log("   ACCESS ARRAY OBJECT BY INDEX");
+      console.log("========================================");
+
+      console.log("Mahasiswa ke-1 : ", dataMahasiswa[0].nama);
+      console.log("Mahasiswa ke-2 : ", dataMahasiswa[1].nama);
+      console.log("Mahasiswa ke-3 : ", dataMahasiswa[2].nama);
+
+      console.log(" ");
+      console.log("========================================");
+      console.log("              LENGTH");
+      console.log("========================================");
+
+      console.log("Jumlah Data Mahasiswa : ", dataMahasiswa.length);
+
+      console.log(" ");
+      console.log("========================================");
+      console.log("          LOOPING OBJECT");
+      console.log("========================================");
+
+      for (let key in mahasiswa) {
+        console.log(key + " : " + mahasiswa[key]);
+      }
+
+      console.log(" ");
+      console.log("========================================");
+      console.log("      LOOPING ARRAY OF OBJECT");
+      console.log("========================================");
+
+      for (let i = 0; i < dataMahasiswa.length; i++) {
+        console.log("----------------------------------------");
+        console.log("Data Mahasiswa Ke-" + (i + 1));
+        console.log("----------------------------------------");
+        console.log("NIM      : " + dataMahasiswa[i].nim);
+        console.log("Nama     : " + dataMahasiswa[i].nama);
+        console.log("Jurusan  : " + dataMahasiswa[i].jurusan);
+        console.log("Fakultas : " + dataMahasiswa[i].fakultas);
+      }
+
+      console.log(" ");
+      console.log("========================================");
+      console.log("            SELESAI");
+      console.log("========================================");
+    </script>
+  </body>
+</html>
