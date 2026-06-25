@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 500px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
+}
+
+#gameCanvas {
+    border: 3px solid #333;
+    border-radius: 10px;
+    background: #1a1a2e;
+    display: block;
+    margin: 0 auto;
+}
+
+.controls {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#startBtn {
+    background: #4CAF50;
+    color: white;
+}
+
+#startBtn:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+#pauseBtn {
+    background: #ff9800;
+    color: white;
+}
+
+#pauseBtn:hover {
+    background: #f57c00;
+    transform: scale(1.05);
+}
+
+#resetBtn {
+    background: #f44336;
+    color: white;
+}
+
+#resetBtn:hover {
+    background: #da190b;
+    transform: scale(1.05);
+}
+
+.keyboard-controls {
+    margin-top: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+#gameStatus {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    min-height: 2rem;
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    #gameCanvas {
+        width: 300px;
+        height: 300px;
+    }
+}

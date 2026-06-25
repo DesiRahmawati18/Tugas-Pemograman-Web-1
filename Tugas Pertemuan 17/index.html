@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game - Pemrograman Web 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🐍 Snake Game</h1>
+        <div class="game-info">
+            <div class="score">Skor: <span id="score">0</span></div>
+            <div class="high-score">Skor Tertinggi: <span id="highScore">0</span></div>
+        </div>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div class="controls">
+            <button id="startBtn">Mulai Game</button>
+            <button id="pauseBtn">Jeda</button>
+            <button id="resetBtn">Reset</button>
+        </div>
+        <div class="keyboard-controls">
+            <p>Gunakan tombol panah (↑ ↓ ← →) untuk mengontrol ular</p>
+        </div>
+        <div id="gameStatus"></div>
+    </div>
+    <script src="snake.js"></script>
+</body>
+</html>
